@@ -27,19 +27,19 @@ from tensorflow.python.training.input import batch
 IMG_WIDTH = 300
 IMG_HEIGHT = 300
 IMG_DIM = (IMG_WIDTH, IMG_HEIGHT)
-train_size = 12 * 4 * 64
-validation_size = 4 * 4 * 64
+train_size = 9 * 4 * 199
+validation_size = 3 * 4 * 199
 batch_size = 16
 
 date = datetime.now().strftime("%Y_%m_%d_%I_%M_%S_%p")
-model_name = f"lfw_vgg19_{date}"
+model_name = f"muct_vgg19_{date}"
 model_path = '/home/jscesar/Tcc/logs/' + model_name
 
 if not os.path.exists(model_path):
     os.mkdir(model_path)
 
-train_path = "/home/jscesar/Tcc/datasets/lfw2r_train"
-validation_path = "/home/jscesar/Tcc/datasets/lfw2r_validation"
+train_path = "/home/jscesar/Tcc/datasets/muct_r_train"
+validation_path = "/home/jscesar/Tcc/datasets/muct_r_validation"
 
 train_datagen = ImageDataGenerator(
     horizontal_flip=True, zoom_range=[0.5, 1.0]
@@ -76,7 +76,7 @@ for layer in model.layers:
     layer.trainable = False
 
 dropout = Dropout(0.3)(model.layers[-1].output)
-out = Dense(64, activation='softmax', activity_regularizer=l2(1e-4))(dropout)
+out = Dense(201, activation='softmax', activity_regularizer=l2(1e-4))(dropout)
 
 new_model = Model(inputs=model.inputs, outputs=out)
 new_model.summary()

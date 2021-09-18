@@ -6,7 +6,7 @@ import cv2
 def extract_face(path):
     samples = os.listdir(path)
 
-    lfw_train = path.replace('lfw2', 'lfw2r')
+    lfw_train = path.replace('muct', 'muct_r')
 
     if not os.path.exists(lfw_train):
         os.mkdir(lfw_train)
@@ -31,9 +31,9 @@ def extract_face(path):
 
     print(cc)
 
-path_train = '/home/jscesar/Tcc/datasets/lfw2_train'
-path_validation = '/home/jscesar/Tcc/datasets/lfw2_validation'
-path_test = '/home/jscesar/Tcc/datasets/lfw2_test'
+path_train = '/home/jscesar/Tcc/datasets/muct_train'
+path_validation = '/home/jscesar/Tcc/datasets/muct_validation'
+path_test = '/home/jscesar/Tcc/datasets/muct_test'
 
 extract_face(path_train)
 extract_face(path_validation)

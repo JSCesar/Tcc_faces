@@ -34,7 +34,6 @@ class GradCam:
 
         grads = tape.gradient(loss, convOutputs)
 
-        print(grads)
         castConvOutputs = tf.cast(convOutputs > 0, "float32")
         castGrads = tf.cast(grads > 0 , "float32")
         guidedGrads = castConvOutputs * castGrads * grads
